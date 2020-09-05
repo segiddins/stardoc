@@ -13,9 +13,22 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 # Needed for generating the Stardoc release binary.
 git_repository(
     name = "io_bazel",
-    commit = "b2b9fa00d7d168e9553cfc9fe381928e8e246176",  # 2020-07-28
-    remote = "https://github.com/bazelbuild/bazel.git",
-    shallow_since = "1595950714 -0700",
+    branch = "segiddins/stardoc-function-return",
+    remote = "https://github.com/segiddins/bazel.git",
+)
+
+# Needed as a transitive dependency of @io_bazel
+git_repository(
+    name = "googleapis",
+    branch = "segiddins/stardoc-function-return",
+    strip_prefix = "third_party/googleapis",
+    remote = "https://github.com/segiddins/bazel.git",
+)
+git_repository(
+    name = "remoteapis",
+    branch = "segiddins/stardoc-function-return",
+    strip_prefix = "third_party/remoteapis",
+    remote = "https://github.com/segiddins/bazel.git",
 )
 
 # The following binds are needed for building protobuf java libraries.
